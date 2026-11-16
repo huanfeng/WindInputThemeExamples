@@ -40,3 +40,7 @@ python tools/pack_wtheme.py themes/03-skin-animated -o dist/qingfeng-niang-anima
 
 - 主题格式：皮肤主题需要清风输入法 0.131 及以上；`click` 的 `alt` / `lock` 需要 0.133 及以上（旧版本忽略，其余照常）。
 - 脚本：Python 3.11+，Pillow。
+
+## 许可
+
+[MIT](LICENSE)：脚本、文档、提示词模板与示例主题（含素材）均适用。
