@@ -3,6 +3,22 @@
 [清风输入法（WindInput）](https://github.com/huanfeng/WindInput)主题的示例与模板仓库：三个由浅入深的示例主题、
 把动作精灵图合成动画的脚本，以及一套**用 AI 生成同类主题**的提示词模板，静态的、动态的都有。
 
+## 效果
+
+动态版「清风娘·动态版」随输入事件切换动作（下图是演示动画，完整的 9 个动作见[动作一览](docs/images/states.png)）：
+
+![清风娘·动态版演示](docs/images/demo.gif)
+
+三个示例主题（输入法里的实际渲染，横排 / 竖排）：
+
+| 主题 | 横排 | 竖排 |
+|---|---|---|
+| `01-color` 樱粉（换色） | ![](docs/images/01-color-horizontal.png) | ![](docs/images/01-color-vertical.png) |
+| `02-skin-static` 清风娘·静态版 | ![](docs/images/02-skin-static-horizontal.png) | ![](docs/images/02-skin-static-vertical.png) |
+| `03-skin-animated` 清风娘·动态版 | ![](docs/images/03-skin-animated-horizontal.png) | ![](docs/images/03-skin-animated-vertical.png) |
+
+> 截图由输入法的渲染引擎在 Linux 上离屏渲染（动态版取首帧）；实际显示以各平台为准。
+
 ## 目录
 
 | 目录 | 内容 |
