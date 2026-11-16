@@ -1,0 +1,21 @@
+# 最小的换色主题：继承「清风」基础主题，只覆盖主色相关的 5 个颜色，其余（圆角、阴影、字体、
+# 暗色适配）全部沿用。适合：只想换个强调色。
+#
+# 想自己改：把 primary 换成你的颜色，再按下面的规则派生另外 4 个。
+#   accent_text   亮色用比 primary 深一档的色（对比度够读），暗色用浅一档
+#   accent_soft   选中候选的底色：primary 加透明度（亮 10% = 1A，暗 18% = 2E）
+#   accent_menu   菜单高亮文字色：比 accent_text 再深一档
+#   tooltip_accent 气泡里的强调色，两档都取浅色
+base = "_qingfeng"
+
+[meta]
+name = "樱粉"
+version = "1.0"
+author = "清风输入法"
+
+[colors]
+primary = "#ec4899"
+accent_text = { light = "#db2777", dark = "#f472b6" }
+accent_soft = { light = "#ec48991A", dark = "#ec48992E" }
+accent_menu = { light = "#be185d", dark = "#f472b6" }
+tooltip_accent = { light = "#f472b6", dark = "#f472b6" }

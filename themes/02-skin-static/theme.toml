@@ -1,0 +1,78 @@
+# 清风娘·静态版：皮肤主题（异形窗体 + 一张不动的人物装饰）。
+# 要点：
+#   - 窗体 frame 是一张位图，沿横竖各划一条「拉伸带」，候选变多时只有拉伸带伸缩；
+#   - 人物是 decor（装饰）：不拉伸、不参与排版，挂在窗体右上角，可以伸出窗体；
+#   - 启用皮肤后窗体自己的背景/边框/阴影不再生效，所以下面把相关节点底色设为透明。
+base = "_qingfeng"
+
+[meta]
+name = "清风娘·静态版"
+version = "1.0"
+author = "清风输入法"
+
+[colors]
+text = "#2b4a5e"
+text_dim = "#4a6a7a"
+text_hint = "#7f97a3"
+selection = "transparent"
+selection_text = "#2f86b3"
+hover = "#2f86b31A"
+
+[item.selected]
+background = "transparent"
+color = "#2f86b3"
+
+[index.selected]
+color = "#2f86b3"
+
+[preedit_bar]
+background = "transparent"
+
+[skin]
+density = 3                      # 图片 3 个像素 = 1 个逻辑像素
+
+# ── 横排 ──
+[skin.horizontal.frame]
+image = "assets/frame_h.png"     # 1320×408：面板在 (24,48)-(1296,324)，四周留给阴影与装饰
+stretch_x = [{ from = 300, to = 840, fill = "stretch" }]   # 横向拉伸带：竹叶、丝带都在带外的固定区
+stretch_y = [{ from = 150, to = 260, fill = "stretch" }]
+
+[skin.horizontal.content]        # 内容框：文字区域距图四边的距离（图片像素）
+left = 72
+top = 96
+right = 72
+bottom = 126
+
+[skin.horizontal.placement]      # 窗体怎么对齐光标：内容框左上角贴在光标下方
+caret = { anchor = "content.top_left", offset = [0, -18] }
+caret_above = { anchor = "content.bottom_left", offset = [0, 18] }
+
+[[skin.horizontal.decor]]
+image = "assets/mascot.png"
+density = 3.6                    # 这张图自己的密度（覆盖 [skin] 的 3）
+flip = "x"                       # 左右镜像：让她朝向光标（窗体左侧）
+anchor = "frame.top_right"       # 挂在窗体右上角
+pivot = "bottom_right"           # 装饰自己的右下角对到锚点上
+offset = [-46, 54]               # 再偏移（图片像素）：y 为正 = 往窗体里压，藏住人物被裁的底边
+z = -1                           # <0：画在窗体下面，窗体盖住人物底边
+
+# ── 竖排：和横排是完全独立的一套 ──
+[skin.vertical.frame]
+image = "assets/frame_v.png"     # 660×936
+stretch_x = [{ from = 180, to = 330, fill = "stretch" }]
+stretch_y = [{ from = 180, to = 640, fill = "stretch" }]
+
+[skin.vertical.content]
+left = 66
+top = 96
+right = 60
+bottom = 126
+
+[[skin.vertical.decor]]
+image = "assets/mascot.png"
+density = 3.6
+flip = "x"
+anchor = "frame.bottom_right"
+pivot = "bottom_right"
+offset = [180, -36]
+z = 1                            # >0：画在窗体上面

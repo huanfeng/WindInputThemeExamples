@@ -1,0 +1,130 @@
+# 清风娘·动态版：在「静态版」的基础上，把人物换成动画，随输入事件切换动作。
+# 窗体、内容框、定位的写法见 02-skin-static；这里只讲动画：
+#   - actions.png 是 APNG，由 tools/sprites_to_apng.py 从精灵图合成；下面 states 的帧区间
+#     就是脚本打印出来的那份，改了 sprites.toml 要同步改这里；
+#   - states：常驻状态，播放时循环；on：事件触发的动作；
+#       { state = "名" }                       切到某个常驻状态；
+#       { play = "a-b", then = "名" }          播一遍一次性片段，播完转 then（缺省回到播前的常驻状态）；
+#   - 事件：typing / backspace / idle_<N>s（停手 N 秒）/ show / commit / empty / page / mode_en / mode_cn / click；
+#   - click 的 lock / alt 是 0.133 起的特性：lock = 播放期间不被打断，alt = 备选动作随机挑一条。
+#     旧版本忽略这两个字段，点击时只播主条（被戳），其余都正常。
+base = "_qingfeng"
+
+[meta]
+name = "清风娘·动态版"
+version = "1.0"
+author = "清风输入法"
+
+[colors]
+text = "#2b4a5e"
+text_dim = "#4a6a7a"
+text_hint = "#7f97a3"
+selection = "transparent"
+selection_text = "#2f86b3"
+hover = "#2f86b31A"
+
+[item.selected]
+background = "transparent"
+color = "#2f86b3"
+
+[index.selected]
+color = "#2f86b3"
+
+[preedit_bar]
+background = "transparent"
+
+[skin]
+density = 3
+
+[skin.horizontal.frame]
+image = "assets/frame_h.png"
+stretch_x = [{ from = 300, to = 840, fill = "stretch" }]
+stretch_y = [{ from = 150, to = 260, fill = "stretch" }]
+
+[skin.horizontal.content]
+left = 72
+top = 96
+right = 72
+bottom = 126
+
+[skin.horizontal.placement]
+caret = { anchor = "content.top_left", offset = [0, -18] }
+caret_above = { anchor = "content.bottom_left", offset = [0, 18] }
+
+# 人物在窗体右上，翻转后朝左（光标方向）；z<0 让窗体盖住她被裁掉的底边。
+[[skin.horizontal.decor]]
+image = "assets/actions.png"
+density = 3.6
+flip = "x"
+anchor = "frame.top_right"
+pivot = "bottom_right"
+offset = [-46, 54]
+z = -1
+
+[skin.horizontal.decor.states]
+idle = { frames = "0-3" }
+typing = { frames = "4-7" }
+happy = { frames = "8-14" }
+poke = { frames = "15-20" }
+think = { frames = "21-24" }
+sleep = { frames = "25-28" }
+read = { frames = "29-32" }
+cheer = { frames = "33-36" }
+glance = { frames = "37-40" }
+
+[skin.horizontal.decor.on]
+typing    = { state = "typing" }
+backspace = { state = "typing" }
+idle_3s   = { state = "idle" }
+idle_8s   = { play = "37-40" }
+idle_20s  = { state = "sleep" }
+commit    = { play = "8-14", then = "idle" }
+empty     = { play = "21-24" }
+page      = { play = "29-32" }
+mode_en   = { play = "33-36" }
+mode_cn   = { play = "33-36" }
+click     = { play = "15-20", lock = true, alt = [{ play = "8-14" }] }
+
+[skin.vertical.frame]
+image = "assets/frame_v.png"
+stretch_x = [{ from = 180, to = 330, fill = "stretch" }]
+stretch_y = [{ from = 180, to = 640, fill = "stretch" }]
+
+[skin.vertical.content]
+left = 66
+top = 96
+right = 60
+bottom = 126
+
+[[skin.vertical.decor]]
+image = "assets/actions.png"
+density = 3.6
+flip = "x"
+anchor = "frame.bottom_right"
+pivot = "bottom_right"
+offset = [180, -36]
+z = 1
+
+[skin.vertical.decor.states]
+idle = { frames = "0-3" }
+typing = { frames = "4-7" }
+happy = { frames = "8-14" }
+poke = { frames = "15-20" }
+think = { frames = "21-24" }
+sleep = { frames = "25-28" }
+read = { frames = "29-32" }
+cheer = { frames = "33-36" }
+glance = { frames = "37-40" }
+
+[skin.vertical.decor.on]
+typing    = { state = "typing" }
+backspace = { state = "typing" }
+idle_3s   = { state = "idle" }
+idle_8s   = { play = "37-40" }
+idle_20s  = { state = "sleep" }
+commit    = { play = "8-14", then = "idle" }
+empty     = { play = "21-24" }
+page      = { play = "29-32" }
+mode_en   = { play = "33-36" }
+mode_cn   = { play = "33-36" }
+click     = { play = "15-20", lock = true, alt = [{ play = "8-14" }] }

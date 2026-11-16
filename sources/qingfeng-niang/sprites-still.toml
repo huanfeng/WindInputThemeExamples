@@ -1,0 +1,14 @@
+# 静态版装饰图：取「眨眼」精灵图的第一格（睁眼）。只有一帧时脚本输出普通 PNG。
+# 运行：python tools/sprites_to_apng.py sources/qingfeng-niang/sprites-still.toml -o themes/02-skin-static/assets/mascot.png
+[sheets]
+"02" = "sheets/sheet-02.png"
+
+[grid]
+grid = 2
+crop = [30, 9, 606, 578]
+scale = 0.75
+alpha_low = 12
+alpha_high = 245
+
+[states]
+idle = { frames = [["02", 0, 100]] }
